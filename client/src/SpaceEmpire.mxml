@@ -1,3 +1,13 @@
 <?xml version="1.0"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
-</mx:Application>
+<spaceempire:SpaceEmpireClientApp xmlns:mx="http://www.adobe.com/2006/mxml"
+                                  xmlns:spaceempire="com.varyag.spaceempire.*"
+                                  xmlns:battlefield="com.varyag.spaceempire.view.battlefield.*"
+                                  paddingTop="5" paddingBottom="5" paddingLeft="5" paddingRight="5">
+    <mx:HBox>
+        <mx:Label text="Life"/>
+    </mx:HBox>
+    <mx:HBox width="100%" height="100%">
+        <battlefield:BattleFieldView/>
+        <mx:VBox width="10%" height="100%"/>
+    </mx:HBox>
+</spaceempire:SpaceEmpireClientApp>
