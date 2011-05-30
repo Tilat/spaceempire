@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<main:MainPanelBase xmlns:fx="http://ns.adobe.com/mxml/2009"
+                    xmlns:s="library://ns.adobe.com/flex/spark"
+                    xmlns:main="com.spaceempire.view.main2.*">
+
+    <fx:Declarations>
+
+        <s:Scale id="scale"
+                 duration="1000"
+                 scaleXFrom="1.0"
+                 scaleXTo="1.5"
+                 scaleYFrom="1.0"
+                 scaleYTo="1.5"
+                 target="{field}"/>
+
+
+    </fx:Declarations>
+
+    <s:HGroup id="panel">
+        <s:Button label="Scale"
+                  id="btn" click="{scale.end(); scale.play();}"
+                  cornerRadius="10"/>
+        <s:Button label="Scale Resize"
+                  id="btn2"
+                  cornerRadius="10"/>
+    </s:HGroup>
+
+    <s:Graphic x="100" y="100" id="field">
+        <!-- Use Use compact syntax with absolute coordinates. -->
+        <s:Path id="path" data="M 20 0
+                            C 50 0 50 35 20 35
+                            L 15 35
+                            L 15 45
+                            L 0 32
+                            L 15 19
+                            L 15 29
+                            L 20 29
+                            C 44 29 44 6 20 6">
+            <!-- Define the border color of the arrow. -->
+            <s:stroke>
+                <s:SolidColorStroke color="0x888888"/>
+            </s:stroke>
+            <!-- Define the fill for the arrow. -->
+            <s:fill>
+                <s:LinearGradient rotation="90">
+                    <s:GradientEntry color="0x000000" alpha="0.8"/>
+                    <s:GradientEntry color="0xFFFFFF" alpha="0.8"/>
+                </s:LinearGradient>
+            </s:fill>
+        </s:Path>
+    </s:Graphic>
+
+</main:MainPanelBase>

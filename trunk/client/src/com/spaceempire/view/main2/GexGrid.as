@@ -1,4 +1,4 @@
-package com.spaceempire.view.main {
+package com.spaceempire.view.main2 {
 import flash.display.Graphics;
 
 import spark.primitives.Path;

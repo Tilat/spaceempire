@@ -1,9 +1,10 @@
 package com.spaceempire {
-import com.spaceempire.view.main.MainPanel;
+import com.spaceempire.view.main2.MainPanel;
 
 import flash.events.Event;
 
 import mx.controls.Alert;
+import mx.core.IVisualElement;
 import mx.events.FlexEvent;
 
 import spark.components.Application;
