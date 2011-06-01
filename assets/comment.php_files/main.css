@@ -1,0 +1,234 @@
+/* CSS Document */
+HTML {font-size:100.01%}
+BODY {width:100%; width: expression((documentElement.clientWidth||document.body.clientWidth)>998?'':'998px'); min-width:998px; padding:0; margin:0; font:normal 65% Verdana, Arial, Helvetica, sans-serif; color:#000; background-color:#fffde8}
+.allpage {width:100%; width: expression((documentElement.clientWidth||document.body.clientWidth)>998?'':'998px'); min-width:998px}
+
+TD, TH, UL, OL, LI, INPUT, TEXTAREA, SELECT, LABEL, BUTTON {font:normal 1em Verdana, Arial, Helvetica, sans-serif}
+UL {margin:0; padding:0; list-style-type:none}
+FORM {margin:0}
+IMG {border:0}
+A {color:#004080; outline:none}
+A:hover {text-decoration:none}
+.underline {text-decoration:underline}
+.red {color:#ff0000}
+.blue {color:#0000ff}
+.green {color:#009900}
+.gray {color:#777}
+.fl {float:left}
+.fr {float:right}
+.cb {clear:both}
+.pr {position:relative}
+.float100 {float:left; width:100%}
+.text, TEXTAREA {border:1px solid #b3b9c3}
+.button {border:1px solid #000; background-color:#d4d0c8; overflow:visible; font-size:10px; padding-left:5px; padding-right:5px}
+.bluebutton {width:125px; height:24px; border:0; background:url(img/bluebutton.gif) no-repeat 0 0; color:#fff; font:normal 11px tahoma; padding-bottom:2px}
+INPUT, SELECT {vertical-align:middle}
+.imgmiddle IMG {vertical-align:middle}
+
+DIV.auto_rb {font-size:8pt; font-weight:bold}
+DIV.auto_rb A {color: #000; width:24%; float:left; text-align:center; display:block}
+
+.pb5 {padding-bottom:5px}
+.pt5 {padding-top:5px}
+.pt10 {padding-top:10px}
+.pr10 {padding-right:10px}
+.mb3 {margin-bottom:3px}
+.mb10 {margin-bottom:10px}
+.mb15 {margin-bottom:15px}
+.ml40 {margin-left:40px}
+.mr10 {margin-right:10px}
+.mt5 {margin-top:5px}
+.width95 {width:95px}
+.width550 {width:550px}
+
+.font11 {font-size:1.1em}
+.lh13 {line-height:1.3em}
+
+.header {float:left; width:100%; background:#fff url(img/bg_top.jpg) repeat-x 0 0; height:132px}
+.headerright {margin-left:265px; text-align:center; padding-top:20px}
+.logo {float:left; width:265px; height:132px; margin-left:-100%}
+
+.toplinks {float:left; width:100%; background-color:#ebf3e9; border-top:1px solid #fff; border-bottom:1px solid #aed2a6}
+.toplinks LI {float:left; font-weight:bold;padding:2px 0 4px 15px}
+
+.leftcolumn {float:left; width:160px; margin-left:-100%; padding:5px 0 0 5px}
+.rightcolumn {float:left; width:100%; padding:5px 0 15px 0}
+.rightcolumninner {margin:0 5px 0 175px}
+
+.leftbox {width:159px; border:solid #035d8a; border-width:1px 0 0 1px; background:#fff url(img/bg_leftbox.png) no-repeat -160px 100%; margin:0 0 15px 0; padding-bottom:9px; overflow:hidden}
+.leftbox .innerbox {padding:6px; border-right:1px solid #035d8a}
+.leftbox H3 {font-size:10px; font-weight:normal; background:#528BC5 url(img/bg_leftbox.png) no-repeat 0 0; color:#fff; margin:0; padding:3px 5px; border-right:1px solid #035d8a}
+.leftbox A {display:block; padding:2px 3px 2px 10px; border-bottom:1px solid #cbe7f5; text-decoration:none; background: url(img/bg_leftbox.png) no-repeat -320px 0.6em}
+.leftbox A:hover {background-color:#edf7fd}
+.leftbox.nodecor A, .leftbox.nodecor A:hover {border-bottom:1px solid #fff; background:none}
+.leftbox.nodecor H3 A, .leftbox.nodecor H3 A:hover, .leftbox H3 A, .leftbox H3 A:hover {display:inline; color:#fff; border-bottom:none; padding:0; background:none}
+.leftbox .text {width:89px}
+
+.fishkalink {border-bottom:1px solid #cbe7f5; padding-bottom:10px}
+.fishkalink A {border:0; margin-bottom:5px}
+.fishkalink .text {width:140px; color:#999}
+.fishkalinkbutton {width:99px; height:22px; border:0; background:#fea5b9 url(img/fishkalink.png) no-repeat 0 0; text-align:left; margin-top:8px; padding:0 0 2px 10px; font-size:11px}
+
+.box {border:solid #035d8a; border-width:1px 0 0 1px; margin:0 auto 15px auto; padding-bottom:9px; overflow:hidden; font-family:tahoma}
+.box .innerbox {padding:10px 6px 3px 6px; border-right:1px solid #035d8a}
+.box H3 {font-size:12px; white-space:nowrap; font-weight:normal; color:#fff; margin:0; padding:2px 5px; border-right:1px solid #035d8a; text-align:center}
+.box312 {width:311px; background:#fff url(img/bg_box312.png) no-repeat -311px 100%}
+.box312 H3 {background:#528BC5 url(img/bg_box312.png) no-repeat 0 0}
+.box369 {width:368px; background:#fff url(img/bg_box369.png) no-repeat -368px 100%}
+.box369 H3 {background:#528BC5 url(img/bg_box369.png) no-repeat 0 0}
+.box440 {width:439px; background:#fff url(img/bg_box440.png) no-repeat -439px 100%}
+.box440 H3 {background:#528BC5 url(img/bg_box440.png) no-repeat 0 0}
+.box719 {width:718px; background:#fff url(img/bg_box719.png) no-repeat 100% 100%}
+.box719 .innerbox {padding:10px 10px 3px 10px} 
+.box719  H3 {background:#528BC5 url(img/bg_h1.png) no-repeat 100% 0}
+.box99 {width:99%; background:#fff url(img/blue.gif) repeat-x 0 100%; position:relative}
+.box99  H3 {background:#528BC5 url(img/bg_h1.png) no-repeat 100% 0}
+.corner {position:absolute; width:9px; height:9px; bottom:0; right:0; background:#fff url(img/bg_box369.png) no-repeat scroll 100% 100%; z-index:2}
+
+.bordertable {width:100%; border-collapse:collapse; table-layout:fixed}
+.bordertable TH {background-color:#fff; padding:5px 4px; vertical-align:top; font-size:1.2em; font-family:tahoma; color:#336699; border:solid #336699; border-width:0 1px 1px 0}
+.bordertable TD {overflow:hidden; background-color:#fff; padding:5px 4px; vertical-align:top; font-family:tahoma; border:solid #336699; border-width:0 1px 1px 0}
+.col1 {width:28px; //width:20px}
+.col2 {width:100%}
+.col3 {width:90px; //width:82px}
+
+.profile {width:100%; border-collapse:collapse}
+.profileleft {width:130px; overflow:hidden; text-align:center; font-family:tahoma}
+.profileleft STRONG {display:block; padding-bottom:10px}
+.profileright {padding-left:10px ; font-family:tahoma}
+.profileright UL {padding-bottom:10px}
+.profileright LI {font-size:1.1em; padding-bottom:5px; font-family:tahoma}
+.profileright LI STRONG {color:#336699}
+
+.profileedit {border-collapse:collapse; margin:0 auto}
+.profileedit TH {text-align:right; vertical-align:top; font-size:11px; font-family:tahoma; padding:5px 10px 0 0; white-space:nowrap}
+.profileedit TD {vertical-align:top; font-family:tahoma; font-size:11px; padding:4px 0}
+.profileedit LABEL {font-size:11px; font-family:tahoma}
+.profileedit .text, .profileedit TEXTAREA, .profileedit .file {width:174px; font-size:12px}
+.profileedit .width88 {width:88px}
+.captcha {float:left; padding-left:15px}
+.captcha DIV {padding:10px 10px 0 0}
+.bluebox {background-color:#e6ecf3; padding:5px 12px; font-size:10px}
+
+.newssend {margin:0}
+.newssend .width550 {width:550px}
+.newssend .file {display:block; width:315px; margin-bottom:5px}
+
+.information {font-size:1.2em; line-height:1.3em; padding:5px 8px 8px 8px}
+.textblock {font-size:1.2em; line-height:1.3em; padding:10px 20px 20px 20px}
+
+.usertable {wodth:100%; border-collapse:collapse}
+.usertable TD, .usertable TH {padding:4px 10px; vertical-align:top; font-family:tahoma; font-size:11px}
+.pages {text-align:center; padding-top:10px; font-size:11px; font-family:verdana}
+
+.topic {background-color:#fff; border:1px solid #035d8a; margin-bottom:15px; padding:10px 6px; clear:both}
+H1 {font-size:1em; background:url(img/bg_h1.gif) no-repeat 0 50%; padding:3px 0 3px 20px; margin:0 0 10px 0; clear:both}
+.topic H1 A {color:#000; text-decoration:underline}
+.topic H1 A:hover {color:#000; text-decoration:none}
+.topic H1.blue A {color:#004080; text-decoration:none; font-size:1.1em}
+.topic H1.blue A:hover {color:#004080; text-decoration:underline}
+.topic A {text-decoration:none}
+.topic A:hover {text-decoration:underline}
+.topic A.underline {text-decoration:underline}
+.topic A.underline:hover {text-decoration:none}
+.photo {padding:10px 0}
+.bottombar {background:url(img/bg_commentbar.jpg) no-repeat 0 100%; padding:10px 0 7px 0}
+.bottombar A {text-decoration:underline}
+.bottombar A:hover {text-decoration:none}
+.voting {text-align:center; margin-top:15px}
+.voting DIV {padding-bottom:5px}
+
+.topbookmarks {clear:both; padding-top:14px}
+.topbookmarks UL {float:left; width:100%}
+.topbookmarks LI {float:left; position:relative; margin-right:3px; background:#fff url(img/bookmark_right.gif) no-repeat 100% 0; bottom:0}
+.topbookmarks DIV {_width:105px; min-width:105px; height:19px; background:url(img/bookmark_left.gif) no-repeat 0 0; padding:4px 4px 0 4px; text-align:center}
+.topbookmarks A, .topbookmarks A:hover {padding:2px 0 2px 25px; text-decoration:none; font:bold 14px Tahoma; white-space:nowrap; background-image:url(img/bookmarks_icons.gif); background-repeat:no-repeat}
+.topbookmarks .current {top:1px}
+.topbookmarks .link1 {background-position:0 1px}
+.topbookmarks .link2 {background-position:0 -28px}
+.topbookmarks .link3 {background-position:0 -58px}
+.topbookmarks .link4 {background-position:0 -87px}
+.topbookmarks .link5 {background-position:0 -118px}
+.topbookmarks .link6 {background-position:0 -148px}
+.topbookmarks .link7 {background-position:0 -177px}
+.topbookmarks .link8 {background-position:0 -194px}
+.topbookmarks .link9 {background-position:0 -218px}
+.topbookmarks .link_a, .topbookmarks .link_a:hover {background-image:none}
+
+
+
+.bestmenu {width:100%}
+.bestmenu UL {padding:0 0 0 20px}
+.bestmenu LI {float:left; border-right:2px solid #ccc; font:bold 1.1em Verdana; padding-right:15px; margin-right:15px}
+.bestmenu LI.current A {font-weight: bold; color: #000000}
+.bestmenu LI.next {border:0}
+.bestmenu A {color:#969696}
+
+.bookmarks {margin:7px -6px 0 -6px}
+.bookmarks UL {float:left; width:100%; border-bottom:1px solid #035d8a; margin-bottom:10px}
+.bookmarks LI {float:left; position:relative; margin-left:10px; background:#fff url(img/bookmark_right.gif) no-repeat 100% 0; bottom:0}
+.bookmarks A, .bookmarks A:hover {display:block; color:#000; text-decoration:none; background:url(img/bookmark_left.gif) no-repeat 0 0; padding:5px 4px; _width:105px; min-width:105px; text-align:center; white-space:nowrap}
+.bookmarks .current {top:1px}
+
+.whidebox {margin-left:1px !important; margin-left:2px; margin-right:1px !important; margin-right:0}
+.comments {float:left; width:100%; border-top:12px solid #035d8a; margin-top:-15px; padding:0 0 10px 0; margin-right:-1px; margin-left:-1px}
+.commentadd {border:dashed #035d8a; border-width:1px 0; margin:20px 0; padding:20px 30px; font-family:arial}
+.commentadd STRONG {display:block; font-size:1.3em; padding-bottom:10px}
+.commentadd FORM {width:700px; margin:5px auto 0 auto; font-size:1.1em}
+.commentadd .left {float:left; width:130px; padding:8px 0 15px 0}
+.commentadd .avatar {display:block; border:1px solid #035d8a; margin-bottom:3px}
+.commentadd .right {float:left; width:570px; padding:8px 0 15px 0}
+.commentadd TEXTAREA {width:558px; height:87px; border:1px solid #8c8c8c; margin-bottom:10px}
+.smile {padding-bottom:10px}
+.smile P {margin:0; padding-bottom:3px}
+.smile IMG {cursor:pointer}
+
+.recomended {margin:0 30px 20px 30px}
+.recomended IMG {border:1px solid #035d8a; margin:5px 0 3px 0}
+.recomended TD A {color:#000; text-decoration:none; font-weight:bold; font-size:1.1em; font-family:arial}
+
+.cloud {width: 350px; display:none; position:absolute; z-index: 100; background-color: #ffffff; border: 1px solid #000; padding: 3px 3px 3px 3px}
+.commentsbox {float:left; width:100%; border-top:1px solid #035d8a; padding:20px 0 10px 0}
+.comment {clear:both; padding:0 5px 10px 5px}
+.author {float:left; width:130px; background-color:#faede0; border-left:1px solid #ff0000; text-align:center; overflow:hidden; padding:3px 0}
+.author .avatar {display:block; margin:3px auto}
+.author .name {font-weight:bold; text-decoration:none}
+.rightbox {margin-left:140px !important; margin-left:137px; height:auto !important; height:1px; font-size:1.2em; font-family:arial}
+.rightboxinner {width:100%; overflow:hidden}
+.rightbox P {margin:0; padding:10px 0}
+.commentvoting {padding-top:20px; font-size:0.9em}
+.commentvoting I {display:-moz-inline-box; display:inline-block; width:14px; height:15px; background:url(img/voting.png) no-repeat 0 0; cursor:pointer; margin:0 3px 0 10px; vertical-align:middle}
+.commentvoting I.no {background-position:0 -15px}
+
+
+.additionalmenu {width:100%; border-collapse:collapse; margin-bottom:15px}
+.additionalmenu TD {padding:2px; background-color:#ffc800; border-top:1px solid #278218; border-bottom:1px solid #8fb478; text-align:center}
+.additionalmenu A {font-weight:bold; font-size:12px; text-decoration:none}
+
+
+.photoline {width:100%; border-collapse:collapse; margin-bottom:15px}
+.photoline TD {padding:0; vertical-align:top}
+.photoline DIV {width:200px; margin:0 auto; text-align:center; overflow:hidden}
+.photoline IMG {display:block; margin:0 auto 5px auto}
+.photoline SPAN {display:block; margin-top:5px}
+.filter {clear:both; padding:15px 0 15px 20px; font-family:tahoma; font-size:1.1em}
+.filter A {text-decoration:underline}
+.filter A:hover {text-decoration:none}
+
+.tailpiece {height:29px; background:url(img/bg_tailpiece.png) no-repeat 50% 10px; padding-top:20px; lmargin:10px 0}
+
+
+
+.pageslist  {text-align:center; line-height:1.8em}
+
+.demotivator LABEL {display:block; margin-bottom:3px; font-family:tahoma; font-size:11px}
+
+
+
+
+
+.footer {clear:both; float:left; width:100%; border-top:1px solid #035d8a; padding:10px 0}
+.footerleft {float:left; width:40%; margin-left:-100%; text-align:center; font-weight:bold; padding-top:20px}
+.footerright {width:60%; margin-left:40%; text-align:center}
+.footerright P {margin:0 0 10px 0}
+

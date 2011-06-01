@@ -1,0 +1,382 @@
+.alawar_clear {
+	font-size:0;
+	line-height:0;
+	height:0;
+	clear:both;
+}
+.games_menu {
+	height:25px;
+	background:url(alawar_images/games_menu_bg.jpg) top repeat-x;
+}
+.games_menu li {
+	float:left;
+	list-style-type:none;
+	height:25px;
+	padding:0;
+	padding-right:15px;
+}
+.games_menu li a {
+	color:#004080;
+	font-size:14px;
+	font-weight:bold;
+	padding-left:28px;	
+	line-height:25px;
+	display:block;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+.games_menu li a:hover {
+	text-decoration:none;
+}
+.games_menu li.games_navigation {
+	float:right;
+}
+.games_menu li.games_navigation a {
+	font-size:10px;
+	font-weight:normal;
+	display:inline;
+	padding:0;
+}
+.games_menu li.games_active {
+	background:#ffce00 url(alawar_images/games_menu_active.gif) top right no-repeat;
+}
+.games_menu li.games_active a {
+	text-decoration:none;
+	color:#000;
+}
+.games_menu li a.simple_games {
+	background:url(alawar_images/games_menu_simple.gif) 7px center no-repeat;
+}
+.games_menu li a.online_games {
+	background:url(alawar_images/games_menu_online.gif) 7px center no-repeat;
+}
+.games_menu li.games_active a.simple_games {
+	background:url(alawar_images/games_menu_simple_active.gif) left top no-repeat;
+}
+.games_menu li.games_active a.online_games {
+	background:url(alawar_images/games_menu_online_active.gif) left top no-repeat;
+}
+.games_submenu {
+	background:#ffce00;
+	/*height:29px;*/
+	border:solid 1px #035d8a;
+	border-top:0;
+}
+.games_submenu ul {
+	width:855px;
+	float:left;
+}
+.games_submenu li {
+	list-style-type:none;
+	float:left;
+	padding-left:10px;
+	padding-right:35px;
+	text-align:left;
+}
+.games_submenu li p {
+	font-size:11px;
+	padding-top:2px;
+}
+.games_submenu li a {
+	color:#004080;
+	font-weight:bold;
+	line-height:29px;
+	font-size:12px;
+}
+.games_submenu li a:hover {
+	text-decoration:none;
+}
+.games_submenu li.last {
+	padding-right:0;
+}
+.games_submenu li.active_genre a {
+	text-decoration:none;
+	color:#000;
+}
+.alawar_right_column {
+	width:200px;
+	vertical-align:top;
+	padding-top:37px;
+}
+.alawar_left_column {
+	zoom:1;
+	margin:0;
+	padding:0 10px 0 0;
+	vertical-align:top;
+}
+.games_block {
+	background:#fff;
+	padding:7px;
+	border:solid 1px #336699;
+	zoom:1;
+}
+.games_block table {
+	table-layout:fixed;
+}
+.game_block {
+	width:190px;
+	text-align:center;
+	vertical-align:top;
+	padding-top:35px;
+}
+.best_game {
+	padding-top:15px;
+}
+.game_block p {
+	text-align:left;
+	padding:3px 0;
+}
+.game_title {
+	color:#004080;
+	font-size:12px;
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+	display:block;
+}
+.game_title:hover {
+	text-decoration:none;
+}
+.game_links a {
+	color:#004080;
+}
+.game_links a:hover {
+	text-decoration:none;
+}
+.game_links img {
+	vertical-align:bottom;
+}
+.games_line {
+	border-bottom:solid 1px #cbe7f5;
+	font-size:0;
+	line-height:0;
+	height:1px;
+	margin-top:30px;
+}
+.best_block {
+	padding-bottom:20px;
+}
+.alawar_content h1 {
+	font-size:14px;
+	text-align:left;
+	margin:7px 0 !important;
+}
+.new_games_block {
+	background:#fff url(alawar_images/right_column_header.jpg) right top no-repeat;
+	border:solid 1px #035d8a;
+	padding:4px;
+}
+.new_games_block h2 {
+	color:#fff;
+	font-size:12px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	line-height:16px;
+}
+.new_games_block .game_item {
+	padding:5px 0;
+	border-bottom:solid 1px #cbe7f5;
+}
+.new_games_block .game_item .game_img {
+	float:left;
+}
+.new_games_block .game_item .game_descr {
+	margin-left:50px;
+	font-size:10px;
+}
+.new_games_block .game_title {
+	font-size:10px;
+}
+.more_new_games {
+	padding-top:5px;
+}
+.more_new_games img {
+	vertical-align:bottom;
+}
+.more_new_games a {
+	color:#004080;
+	font-weight:bold;
+	font-size:10px;
+}
+.more_new_games a:hover {
+	text-decoration:none;
+}
+.more_games .game_block {
+	padding-top:10px;
+	text-align:left;
+}
+.more_games .game_item {
+	padding-bottom:15px;
+}
+.more_games .game_img {
+	float:left;
+}
+.more_games .game_descr {
+	margin-left:50px;
+}
+.more_games .game_links {
+	padding-top:5px;
+}
+.all_games img {
+	float:left;
+	margin:3px 5px 0 0;
+	vertical-align:bottom;
+}
+.all_games .game_title {
+	font-weight:normal;
+	font-size:11px;
+}
+.all_games .game_title {
+	margin:0 0 0 12px;
+}
+.alawar_signature {
+	padding-top:10px;
+	height:50px;
+}
+.alawar_signature img {
+	float:left;
+}
+.alawar_signature .help  {
+	float:right;
+	line-height:18px;
+	padding-left:24px;
+	margin-top:7px;
+	background:url(alawar_images/help.jpg) left center no-repeat;
+	color:#004080;
+	font-size:12px;
+}
+.alawar_signature .help:hover  {
+	text-decoration:none;
+}
+.game_pre_left {
+	float:left;
+	width:190px;
+	text-align:center;
+}
+.game_pre_left p {
+	margin:0;
+	padding:0 0 5px 0;
+	
+}
+.game_pre_right {
+	margin-bottom:20px;
+	margin-left:20px;
+}
+.game_pre h1.sub_h1,
+.game_pre h3 {
+	font-size:12px;
+	margin:5px 0 !important;
+}
+.download_now {
+	width:170px;
+	//width:190px;
+	height:25px;
+	line-height:25px;
+	color:#fff !important;
+	font-size:11px;
+	font-weight:bold;
+	background:url(alawar_images/download_now.jpg) left top no-repeat;
+	display:block;
+	text-align:left;
+	padding-left:20px;
+	text-decoration:none;
+	margin:5px 0;
+}
+.download_now:hover {
+	background-position:left bottom;
+}
+.play_now {
+	width:120px;
+	//width:140px;
+	height:25px;
+	line-height:25px;
+	color:#fff !important;
+	font-size:11px;
+	font-weight:bold;
+	background:url(alawar_images/play_now.jpg) left top no-repeat;
+	display:block;
+	text-align:left;
+	padding-left:30px;
+	text-decoration:none;
+	margin:5px auto;
+}
+.play_now:hover {
+	text-decoration:underline;
+	background-position:left bottom;
+}
+.new_games_block .last_new_game {
+	border:0;
+}
+.new_online_games_block h2 {
+	height:25px;
+}
+.new_online_games_block .game_links {
+	padding-top:5px;
+}
+.game_popup {
+	width:280px;
+	position:absolute;
+	background:url(alawar_images/popup_bg_top.png) right top no-repeat;
+	padding-top:5px;
+}
+.game_popup_bg {
+	width:280px;
+	padding-top:2px;
+	padding-bottom:10px;
+	background:url(alawar_images/popup_bg.png) right bottom no-repeat;
+}
+.game_popup_content {
+	margin:0 8px 0 37px;
+}
+.game_popup_content .game_title {
+	text-align:left;
+	padding-left:16px;
+	padding-right:16px;
+}
+.game_popup_content h3 {
+	margin:5px 0;
+	text-align:left;
+	padding-left:16px;
+}
+.game_popup_content .arr_left {
+	float:left;
+	width:12px;
+	height:75px;
+	background:url(alawar_images/popup_arr_left.gif) left top no-repeat;
+	text-decoration:none;
+	font-size:0;
+	line-height:0;
+}
+.game_popup_content .arr_right {
+	float:right;
+	width:12px;
+	height:75px;
+	background:url(alawar_images/popup_arr_right.gif) left top no-repeat;
+	text-decoration:none;
+	font-size:0;
+	line-height:0;
+}
+.popup_screenshots {
+	width:204px;
+	margin:auto;
+	height:80px;
+}
+.popup_screenshots a {
+	float:left;
+	padding:1px;
+	width:100px;
+	height:75px;
+}
+.game_popup_content p {
+	padding-left:16px;
+	padding-right:16px;
+	margin-bottom:5px;
+}
+.game_popup_content .download_now {
+	margin:5px 0 5px 23px;
+}
+
+*html .games_block {
+	text-align:left !important;
+}
+.games_block {
+	//text-align:left !important;
+}

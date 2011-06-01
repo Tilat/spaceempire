@@ -1,0 +1,28 @@
+if (cookie_enabled()) {
+var swfFLAdHeight=100;
+var swfFLAdWidth=160;
+var swfRandom='1151287015';
+var swfFLClickTag='http://medialand.relax.ru/reference?gid=330&pid=1327&bid=11587&rid=1151287015';
+var swfFLLocation='http://content.relax.ru/1501/alawar_160x100_2.gif';
+var swfFLImage='http://content.relax.ru/1501/alawar_160x100_2.gif';
+var tracingCode = '';
+var pid="1327";
+
+document.write('<script language="JavaScript" type="text/javascript" src="http://content.medialand.ru/rich_rectangle_div.js"><\/script>');
+}
+function cookie_enabled() {
+ if (!window.opera && !navigator.cookieEnabled){
+  return 0;
+ }
+ if (typeof document.cookie == 'string'){
+  if (document.cookie.length==0) {
+   document.cookie = "test";
+   var is_enabled = document.cookie == 'test';
+   document.cookie = '';
+   return is_enabled;
+  } else {
+   return 1;
+  }
+ }
+ return 0;
+}

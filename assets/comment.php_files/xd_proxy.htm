@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1251">
+
+  
+    <title>Open API XD Proxy</title>
+    <script type="text/javascript">
+/*
+ * easyXDM 
+ * http://easyxdm.net/
+ * Copyright(c) 2009, Oyvind Sean Kinsey, oyvind@kinsey.no.
+ * 
+ * MIT Licensed - http://easyxdm.net/license/mit.txt
+ * 
+ */
+ easyXDM={version:"2.0.1.77",apply:function(d,b,c){if(!b){return}for(var a in b){if(b.hasOwnProperty(a)&&(!c||!d[a])){d[a]=b[a]}}},prepareTransportStack:function(a){var e=easyXDM.Url.Query(),j=a.protocol,h;a.isHost=a.isHost||(typeof e.xdm_p==="undefined");if(!a.isHost){a.channel=e.xdm_c;a.remote=decodeURIComponent(e.xdm_e);j=e.xdm_p}else{if(typeof j==="undefined"){a.remote=easyXDM.Url.resolveUrl(a.remote);if(window.postMessage){j="1"}else{if(a.remoteHelper){a.remoteHelper=easyXDM.Url.resolveUrl(a.remoteHelper);j="2"}else{j="0"}}a.channel=a.channel||"default"}}switch(j){case"0":a.interval=a.interval||300;a.delay=a.delay||2000;a.useResize=true;a.useParent=false;a.usePolling=false;if(a.isHost){var g={xdm_c:a.channel,xdm_p:0};if(!a.local){var c=location.protocol+"//"+location.host,f=document.body.getElementsByTagName("img"),d=f.length,b;while(d--){b=f[d];if(b.src.substring(0,c.length)===c){a.local=b.src;break}}if(!a.local){a.local=window}}if(a.local===window){a.usePolling=true;a.useParent=true;g.xdm_e=encodeURIComponent(a.local=location.protocol+"//"+location.host+location.pathname+location.search);g.xdm_pa=1}else{g.xdm_e=easyXDM.Url.resolveUrl(a.local)}if(a.container){a.useResize=false;g.xdm_po=1}a.remote=easyXDM.Url.appendQueryParameters(a.remote,g)}else{a.channel=e.xdm_c;a.remote=decodeURIComponent(e.xdm_e);a.useParent=(typeof e.xdm_pa!=="undefined");if(a.useParent){a.useResize=false}a.usePolling=(typeof e.xdm_po!=="undefined")}h=[new easyXDM.stack.HashTransport(a),new easyXDM.stack.ReliableBehavior({timeout:((a.useResize?50:a.interval*1.5)+(a.usePolling?a.interval*1.5:50))}),new easyXDM.stack.QueueBehavior({encode:true,maxLength:4000-a.remote.length}),new easyXDM.stack.VerifyBehavior({initiate:a.isHost})];break;case"1":h=[new easyXDM.stack.PostMessageTransport(a)];break;case"2":h=[new easyXDM.stack.NameTransport(a),new easyXDM.stack.QueueBehavior(),new easyXDM.stack.VerifyBehavior({initiate:a.isHost})];break}return h},createStack:function(d){var e,c={incoming:function(g,f){this.up.incoming(g,f)},outgoing:function(f,g){this.down.outgoing(f,g)},callback:function(f){this.up.callback(f)},init:function(){this.down.init()},destroy:function(){this.down.destroy()}};for(var b=0,a=d.length;b<a;b++){e=d[b];this.apply(e,c,true);if(b!==0){e.down=d[b-1]}if(b!==a-1){e.up=d[b+1]}}return e}};easyXDM.stack={};easyXDM.DomHelper={createFrame:function(c,a,e,b){var g;function f(){e(g.contentWindow)}if(b&&window.attachEvent){var d=document.createElement("span");document.body.appendChild(d);if(a){d.innerHTML='<iframe src="'+c+'" id="'+b+'" name="'+b+'"></iframe>';g=d.firstChild;a.appendChild(g);document.body.removeChild(d)}else{d.innerHTML='<iframe style="position:absolute;left:-2000px;" src="'+c+'" id="'+b+'" name="'+b+'"></iframe>';g=d.firstChild}if(e){g.loadFn=f;this.on(g,"load",f)}}else{g=document.createElement("IFRAME");g.src=c;if(e){g.loadFn=f;this.on(g,"load",f)}if(a){a.appendChild(g)}else{g.style.position="absolute";g.style.left="-2000px";document.body.appendChild(g)}}if(b){g.id=g.name=b}return g},on:function(d,b,c,a){if(window.addEventListener){easyXDM.DomHelper.on=function(g,e,f){g.addEventListener(e,f,false)}}else{easyXDM.DomHelper.on=function(e,g,f){e.attachEvent("on"+g,f)}}easyXDM.DomHelper.on(d,b,c)},un:function(e,c,d,a){var b;if(window.removeEventListener){b=function(i,g,h,f){i.removeEventListener(g,h,f)}}else{b=function(f,h,g){f.detachEvent("on"+h,g)}}b(e,c,d);easyXDM.DomHelper.un=b},requiresJSON:function(a){if(typeof JSON=="undefined"||!JSON){document.write('<script type="text/javascript" src="'+a+'"><\/script>')}}};easyXDM.Fn={map:{},set:function(a,b){this.map[a]=b},get:function(b,a){var c=this.map[b];if(a){delete this.map[b]}return c}};easyXDM.Url={Query:function(){if(this._query){return this._query}this._query={};var f,d,e,c=location.search.substring(1).split("&");for(var b=0,a=c.length;b<a;b++){f=c[b];d=f.substring(0,f.indexOf("="));e=f.substring(d.length+1);this._query[d]=e}return this._query},getDomainName:function(a){var c=a.substring(a.indexOf("//")+2);c=c.substring(0,c.indexOf("/"));var b=c.indexOf(":");if(b!=-1){c=c.substring(0,b)}return c},getLocation:function(a){var b=a.indexOf("//");var c=a.substring(b+2);if(c.indexOf("/")==-1){return a}c=c.substring(0,c.indexOf("/"));return a.substring(0,b+2)+c},resolveUrl:function(b){var d=/\/[\d\w+%_\-]+\/\.\.\//,c=/([^:])\/\//g;b=b.replace(c,"$1/");while(d.test(b)){b=b.replace(d,"/")}if(b.match(/^(http||https):\/\//)){return b}var e=(b.substring(0,1)==="/")?"":location.pathname;if(e.substring(e.length-1)!=="/"){e=e.substring(0,e.lastIndexOf("/")+1)}var a=location.protocol+"//"+location.host+e+b;return a},appendQueryParameters:function(a,c){var d="";for(var b in c){if(c.hasOwnProperty(b)){d+=b+"="+c[b]+"&"}}return a+((a.indexOf("?")==-1)?"?":"&")+d.substring(0,d.length-1)}};easyXDM.Socket=function(b){var a=easyXDM.createStack(easyXDM.prepareTransportStack(b).concat([{incoming:function(e,d){b.onMessage(e,d)},callback:function(d){if(b.onReady){b.onReady(d)}}}])),c=easyXDM.Url.getLocation(b.remote);this.destroy=function(){a.destroy()};this.postMessage=function(d){a.outgoing(d,c)};a.init()};easyXDM.Rpc=function(c,b){var a=easyXDM.createStack(easyXDM.prepareTransportStack(c).concat([new easyXDM.stack.RpcBehavior(this,b),{callback:function(d){if(c.onReady){c.onReady(d)}}}]));this.destroy=function(){a.destroy()};a.init()};easyXDM.stack.PostMessageTransport=function(d){var f,g,b,c;function a(h){if(h.origin){return h.origin}if(h.uri){return easyXDM.Url.getLocation(h.uri)}if(h.domain){return location.protocol+"//"+h.domain}throw"Unable to retrieve the origin of the event"}function e(i){var h=a(i);if(h==c&&i.data.substring(0,d.channel.length+1)==d.channel+" "){f.up.incoming(i.data.substring(d.channel.length+1),h)}}return(f={outgoing:function(h,i){b.postMessage(d.channel+" "+h,i||c)},destroy:function(){easyXDM.DomHelper.un(window,"message",e);if(g){b=null;g.parentNode.removeChild(g);g=null}},init:function(){c=easyXDM.Url.getLocation(d.remote);if(d.isHost){easyXDM.DomHelper.on(window,"message",function h(i){if(i.data==d.channel+"-ready"){easyXDM.DomHelper.un(window,"message",h);easyXDM.DomHelper.on(window,"message",e);window.setTimeout(function(){f.up.callback(true)},0)}});g=easyXDM.DomHelper.createFrame(easyXDM.Url.appendQueryParameters(d.remote,{xdm_e:location.protocol+"//"+location.host,xdm_c:d.channel,xdm_p:1}),d.container,function(i){b=i})}else{easyXDM.DomHelper.on(window,"message",e);b=window.parent;b.postMessage(d.channel+"-ready",c);window.setTimeout(function(){f.up.callback(true)},0)}}})};easyXDM.stack.NameTransport=function(e){var f;var h,l,d,j,k,b,a;function i(o){var n=e.remoteHelper+(h?("#_3"+encodeURIComponent(a+"#"+e.channel)):("#_2"+e.channel));l.contentWindow.sendMessage(o,n)}function g(){if(h){if(++j===2||!h){f.up.callback(true)}}else{i("ready");f.up.callback(true)}}function m(n){f.up.incoming(n,b)}function c(){if(k){window.setTimeout(function(){k(true)},0)}}return(f={outgoing:function(o,p,n){k=n;i(o)},destroy:function(){l.parentNode.removeChild(l);l=null;if(h){d.parentNode.removeChild(d);d=null}},init:function(){h=e.isHost;j=0;b=easyXDM.Url.getLocation(e.remote);e.local=easyXDM.Url.resolveUrl(e.local);if(h){easyXDM.Fn.set(e.channel,function(n){if(h&&n==="ready"){easyXDM.Fn.set(e.channel,m);g()}});a=easyXDM.Url.appendQueryParameters(e.remote,{xdm_e:e.local,xdm_c:e.channel,xdm_p:2});d=easyXDM.DomHelper.createFrame(a+"#"+e.channel,e.container,null,e.channel)}else{e.remoteHelper=e.remote;easyXDM.Fn.set(e.channel,m)}l=easyXDM.DomHelper.createFrame(e.local+"#_4"+e.channel,null,function(){easyXDM.DomHelper.un(l,"load",l.loadFn);easyXDM.Fn.set(e.channel+"_load",c);g()})}})};easyXDM.stack.HashTransport=function(r){var p;var s=this,m,b,a,l,d,i,o;var f,k,c,g;function e(u){if(!o){return}var t=r.remote+"#"+(d++)+"_"+u;if(m||!k){o.contentWindow.location=t;if(c){o.width=o.width>75?50:100}}else{o.location=t}}function q(t){l=t;p.up.incoming(l.substring(l.indexOf("_")+1),g)}function h(t){q(i.location.hash)}function n(){if(i.location.hash&&i.location.hash!=l){q(i.location.hash)}}function j(){if(f){b=window.setInterval(n,a)}else{easyXDM.DomHelper.on(i,"resize",h)}}return(p={outgoing:function(t,u){e(t)},destroy:function(){if(f){window.clearInterval(b)}else{if(i){easyXDM.DomHelper.un(i,"resize",n)}}if(m||!k){o.parentNode.removeChild(o)}o=null},init:function(){m=r.isHost;a=r.interval;l="#"+r.channel;d=0;f=r.usePolling;k=r.useParent;c=r.useResize;g=easyXDM.Url.getLocation(r.remote);if(!m&&k){i=window;o=parent;j();p.up.callback(true)}else{o=easyXDM.DomHelper.createFrame((m?r.remote:r.remote+"#"+r.channel),r.container,(m&&k||!m)?function(){i=window;j();p.up.callback(true)}:null,(m?"local_":"remote_")+r.channel);if(m&&!k){var v=0,t=r.delay/50;(function u(){if(++v>t){throw new Error("Unable to reference listenerwindow")}if(i){return}try{i=o.contentWindow.frames["remote_"+r.channel];window.clearTimeout(b);j();p.up.callback(true);return}catch(w){window.setTimeout(u,50)}}())}}}})};easyXDM.stack.ReliableBehavior=function(c){var d,a,h,f,j=0,e=0,g=c.tries||5,i=c.timeout,b=0,k;return(d={incoming:function(n,l){var m=n.indexOf("_"),p=parseInt(n.substring(0,m),10),o;n=n.substring(m+1);m=n.indexOf("_");o=parseInt(n.substring(0,m),10);m=n.indexOf("_");n=n.substring(m+1);if(a&&p===j){window.clearTimeout(a);a=null;if(k){window.setTimeout(function(){k(true)},0)}}if(o!==0){if(o!==b){b=o;n=n.substring(o.length+1);d.down.outgoing(o+"_0_ack",l);window.setTimeout(function(){d.up.incoming(n,l)},c.timeout/2)}else{d.down.outgoing(o+"_0_ack",l)}}},outgoing:function(n,l,m){k=m;e=0;h={data:b+"_"+(++j)+"_"+n,origin:l};(function o(){a=null;if(++e>g){if(k){window.setTimeout(function(){k(false)},0)}}else{d.down.outgoing(h.data,h.origin);a=window.setTimeout(o,c.timeout)}}())},destroy:function(){if(a){window.clearInterval(a)}d.down.destroy()}})};easyXDM.stack.QueueBehavior=function(b){var d,e=[],i=false,c="",h,a=(b)?b.maxLength:0,f=(b)?(b.encode||false):false;function g(){if(i||e.length===0||h){return}i=true;var j=e.shift();d.down.outgoing(j.data,j.origin,function(k){i=false;if(j.callback){window.setTimeout(function(){j.callback(k)},0)}g()})}return(d={incoming:function(m,k){var l=m.indexOf("_"),j=parseInt(m.substring(0,l),10);c+=m.substring(l+1);if(j===0){if(f){c=decodeURIComponent(c)}d.up.incoming(c,k);c=""}},outgoing:function(n,k,m){if(f){n=encodeURIComponent(n)}var j=[],l;if(a){while(n.length!==0){l=n.substring(0,a);n=n.substring(l.length);j.push(l)}}else{j.push(n)}while((l=j.shift())){e.push({data:j.length+"_"+l,origin:k,callback:j.length===0?m:null})}g()},destroy:function(){h=true;d.down.destroy()}})};easyXDM.stack.VerifyBehavior=function(e){var f,d,b,c=false;function a(){d=Math.random().toString(16).substring(2);f.down.outgoing(d)}return(f={incoming:function(i,g){var h=i.indexOf("_");if(h===-1){if(i===d){f.up.callback(true)}else{if(!b){b=i;if(!e.initiate){a()}f.down.outgoing(i)}}}else{if(i.substring(0,h)===b){f.up.incoming(i.substring(h+1),g)}}},outgoing:function(i,g,h){f.down.outgoing(d+"_"+i,g,h)},callback:function(g){if(e.initiate){a()}}})};easyXDM.stack.RpcBehavior=function(c,b){var f,d=b.serializer||window.JSON;var a=0,e={};function g(j,i){if(typeof j.scope==="undefined"){j.scope=window}if(j.isVoid){return function(){var k=Array.prototype.slice.call(arguments,0);window.setTimeout(function(){f.down.outgoing(d.stringify({name:i,params:k}))},0)}}else{return function(){e[""+(++a)]=arguments[arguments.length-1];var k={name:i,id:(a),params:Array.prototype.slice.call(arguments,0,arguments.length-1)};f.down.outgoing(d.stringify(k))}}}function h(i,l,k,j){if(!k){throw new Error("The method "+i+" is not implemented.")}if(k.isAsync){j.push(function(m){f.down.outgoing(d.stringify({id:l,response:m}))});k.method.apply(k.scope,j)}else{if(k.isVoid){k.method.apply(k.scope,j)}else{f.down.outgoing(d.stringify({id:l,response:k.method.apply(k.scope,j)}))}}}return(f={incoming:function(j,i){var k=d.parse(j);if(k.name){h(k.name,k.id,b.local[k.name],k.params)}else{e[k.id](k.response);delete e[k.id]}},init:function(){if(b.remote){for(var i in b.remote){if(b.remote.hasOwnProperty(i)){c[i]=g(b.remote[i],i)}}}f.down.init()},destroy:function(){for(var i in c){if(c.hasOwnProperty(i)){delete c[i]}}f.down.destroy()}})};
+
+
+
+/*
+ * VKontakte API Proxy Transport JS library
+ * http://vkontakte.ru/
+ */
+ easyXDM.DomHelper.requiresJSON("http://vkontakte.ru/js/lib/json2.js");
+
+if(!window.VK) {
+  VK = {};
+}
+
+VK._apiId = null;
+VK._session = null;
+VK._userStatus = 'unknown',
+VK._transport = null;
+VK._domain = {
+  main: window.location.protocol + '//vkontakte.ru/',
+  auth: window.location.protocol + '//login.vk.com/',
+  api: window.location.protocol + '//api.vkontakte.ru/'
+};
+VK._path = {
+  login: 'login.php',
+  status: 'login_status.php',
+  api: 'api.php',
+  transport: '/xd_receiver.html'
+};
+
+if (!VK.Ajax) {
+  VK.Ajax = {
+    x: function() {
+      try {
+        return new ActiveXObject('Msxml2.XMLHTTP');
+      } catch(e) {
+        try {
+          return new ActiveXObject('Microsoft.XMLHTTP');
+        } catch(e) { 
+          return new XMLHttpRequest();
+        }
+      }
+    },
+    send: function(u, f ,m ,a) {
+      var x = this.x();
+      x.open(m, u, true);
+      x.onreadystatechange = function() {
+        if(x.readyState == 4) {
+          f(JSON.parse(x.responseText));
+        }
+      };
+      if (m == 'POST') x.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+      x.send(a);
+    },
+    get: function(url, func) {
+      this.send(url, func, 'GET')
+    },
+    post: function(url, func, args) {
+      this.send(url, func, 'POST', args);
+    }
+  };
+}
+
+/* VK API helper */
+if(!VK.Api) {
+VK.Api = {
+  call: function(qs, cb) {
+    VK.Ajax.post(VK._domain.api + VK._path.api, function(response) {
+      cb(response);
+    }, qs);
+  }
+}
+};
+
+if(!VK.Auth) {
+  VK.Auth = {
+    _getLoginStatusCb: null,
+    _logoutCb: null,
+    _loadTransport: function(url) {
+      VK._transport.innerHTML = '<iframe scrolling="no" frameborder="0" src="' + url + '">';
+    },
+    _resetTransport: function() {
+      setTimeout(function() {
+        VK._transport.innerHTML = '';
+      }, 0);
+    },
+    _setSession: function(session, status) {
+      VK._session = session;
+      VK._userStatus = status;
+      VK.XDM.remote.setSession(session, status);
+    },
+    /* Transport requests */
+    getLoginStatus: function(cb) {
+      this._getLoginStatusCb = cb;
+      this._loadTransport(VK._domain.main + VK._path.status + '?app=' + VK._apiId + '&ref=' + encodeURIComponent(document.referrer) + (VK._session != null ? ('&sid='+VK._session.sid) : ''));
+    },
+    logout: function(cb) {
+      var
+        redirect_url = 'vkontakte.ru/' + VK._path.login + '?app=' + VK._apiId + '&layout=openapi&do_logout=1',
+        logout_url = VK._domain.auth + '?act=logout&app='+VK._apiId+'&sid='+VK._session.sid + '&url=' + encodeURIComponent(redirect_url);
+      
+      this._logoutCb = cb;
+      this._loadTransport(logout_url);
+    },
+    /* Transport response */
+    setLoginStatus: function(session, status) {
+      this._resetTransport();
+      this._setSession(session, status);
+      if(typeof this._getLoginStatusCb == 'function') {
+        this._getLoginStatusCb({session: session, status: status});
+      }
+      this._getLoginStatusCb = null;
+    },
+    setLogout: function() {
+      this._resetTransport();
+      document.cookie = 'remixsid=; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; domain=.vkontakte.ru';
+      document.cookie = 'remixchk=; expires=Thu, 01-Jan-1970 00:00:01 GMT; path=/; domain=.vkontakte.ru';
+      this._setSession(null, 'unknown');
+      if(typeof this._logoutCb == 'function') {
+        this._logoutCb({session: null, status: 'unknown'});
+      }
+      this._logoutCb = null;
+    }
+  }
+};
+
+if(!VK.XDM) {
+  VK.XDM = {
+    remote: null,
+    init: function() {
+      VK.XDM.remote = new easyXDM.Rpc({
+        local: VK._path.transport,
+        onReady: function() {
+          VK._transport = document.getElementById('iframeTransport');
+        }
+      }, {
+        remote: {
+          setSession: {
+            isVoid: true
+          }
+        },
+        local: {
+          init: {
+            isVoid: true,
+            method: function(apiId, session, status, refreshStatus) {
+              VK._apiId = apiId;
+              VK._session = session;
+              VK._userStatus = status;
+              if (refreshStatus) {
+                VK.Auth.getLoginStatus();
+              }
+            }
+          },
+          apiCall: {
+            isAsync: true,
+            method: function(qs, cb) {
+              VK.Api.call(qs, cb);
+            }
+          },
+          getLoginStatus: {
+            isAsync: true,
+            method: function(cb) {
+              VK.Auth.getLoginStatus(cb);
+            }
+          },
+          logout: {
+            isAsync: true,
+            method: function(cb) {
+              VK.Auth.logout(cb);
+            }
+          }
+        }
+      });
+    }
+  }
+};
+
+(function() {
+  window.addEventListener
+    ? window.addEventListener('load', VK.XDM.init, false)
+    : window.attachEvent('onload', VK.XDM.init);
+}());
+    </script>
+  </head><body>
+    <script type="text/javascript">
+      document.domain = 'vkontakte.ru';
+    </script>
+    <div id="iframeTransport"></div>
+  </body></html>

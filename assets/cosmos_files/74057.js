@@ -1,0 +1,1 @@
+window.tnSetParams(74057,{"h":1,"v":4});window.tnSetStyle(".tblock_74057{width:155px;height:740px;background:#FFFDE8;}");window.tnLoadBlocks();

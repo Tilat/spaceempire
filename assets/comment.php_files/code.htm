@@ -1,0 +1,106 @@
+function cookie_enabled() {
+    var is_enabled = false;
+    if (!window.opera && !navigator.cookieEnabled){
+        return is_enabled;
+    }
+    if (typeof document.cookie == 'string'){
+        if (document.cookie.length==0) {
+            document.cookie = "test";
+            is_enabled = document.cookie == 'test';
+            document.cookie = '';
+        } else {
+            is_enabled = true;
+        }
+    }
+    return is_enabled;
+}
+
+function check(o) {
+    if( (typeof(o) != "undefined") && (o != null) )
+	return 1;
+    return 0;
+}
+
+function fill(pid,s) {
+    var doc;
+    if(document.all&&!window.opera){
+	doc=window.frames['medialand_adland_frm_'+pid].document;
+    }else{
+	if(window.opera){
+	    while(!document.getElementById("medialand_adland_frm_"+pid).contentDocument){};
+	};                                                                                                                                                   
+	doc=document.getElementById("medialand_adland_frm_"+pid).contentDocument;
+    }
+    if(check(doc)) {
+	doc.open();
+	doc.writeln("<html><body>");
+	doc.writeln(s);
+	doc.writeln("</body></html>");
+	doc.close();
+    }
+}
+
+if(cookie_enabled()) {
+var swfFLAdHeight=60;
+var swfFLAdWidth=728;
+var swfRandom='845566172';
+var swfFLClickTag='http://engine.adland.ru/reference?gid=117&pid=2231&bid=10900&rid=845566172';
+var swfFLLocation='http://content.medialand.ru/adland.medialand.ru/2455/728x60_siloy_misly.swf';
+var swfFLImage='http://content.medialand.ru/adland.medialand.ru/2455/728x60_siloy_misly.jpg';
+var ext = swfFLLocation.substring(swfFLLocation.length-4,swfFLLocation.length);
+ext=ext.toLowerCase();
+var isFlash=(ext=='.swf')?1:0;
+var str = '';
+var pid="2231";
+var obj_div = document.getElementById('medialand_adland_div_'+pid);
+var obj_frm = document.getElementById('medialand_adland_frm_'+pid);
+
+if(isFlash) {
+        var contentVersion = 6,
+        plugin = (navigator.mimeTypes && navigator.mimeTypes["application/x-shockwave-flash"]) ? navigator.mimeTypes["application/x-shockwave-flash"].enabledPlugin : 0, flashCanPlay;
+        if (plugin) {
+                var words = navigator.plugins["Shockwave Flash"].description.split(" "), pluginVersion;
+                for (var i = 0; i < words.length; ++i) {
+                        if (isNaN(parseInt(words[i]))) {
+                                continue;
+                        }
+                        pluginVersion = words[i];
+                }
+                flashCanPlay = pluginVersion >= contentVersion;
+        } else {
+                if (navigator.userAgent && navigator.userAgent.indexOf("MSIE") >=0 && (navigator.appVersion.indexOf("Win") != -1)) {
+                        document.writeln('<sc'+'ript language="VBScript">');
+                        document.writeln('  on error resume next');
+                        document.writeln('  flashCanPlay = (IsObject(CreateObject("ShockwaveFlash.ShockwaveFlash." & contentVersion)))');
+                        document.writeln('</sc'+'ript>');
+                }
+        }
+        if (flashCanPlay) {
+		swfFLClickTag = escape(swfFLClickTag);
+                str = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://active.macromedia.com/flash2/cabs/swflash.cab#version=4,0,0,0" width="'+swfFLAdWidth+'" height="'+swfFLAdHeight+'">';
+                str += '<param name="movie" value="' + swfFLLocation + '?link1=' + swfFLClickTag + '">';
+                str += '<param name="quality" value="high">';
+                str += '<param name="wmode" value="opaque">';
+                str += '<embed src="'+ swfFLLocation +'?link1=' + swfFLClickTag + '" quality="high" wmode="opaque" width="'+swfFLAdWidth+'" height="'+swfFLAdHeight+'" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash">';
+                str += '</embed>';
+                str += '</object>';
+        } else {
+		isFlash = 0;
+        	str = '<a href="'+swfFLClickTag+'" target="_blank"><img src="'+swfFLImage+'" width="'+swfFLAdWidth+'" height="'+swfFLAdHeight+'" border=0></a>';
+	}
+} else {
+        str = '<a href="'+swfFLClickTag+'" target="_blank"><img src="'+swfFLLocation+'" width="'+swfFLAdWidth+'" height="'+swfFLAdHeight+'" border=0></a>';
+}
+if(str.length){
+str += '';
+if(check(obj_div) && check(obj_frm)) {
+    obj_frm.width = swfFLAdWidth;
+    obj_frm.height = swfFLAdHeight;
+    fill(pid,str);
+    if(obj_frm.parentNode == obj_div) {
+	obj_div.style.display="inline";
+    }
+}
+        document.close();
+}
+}
