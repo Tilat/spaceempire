@@ -13,6 +13,7 @@ import mx.events.FlexEvent;
 
 import spark.components.Group;
 import spark.primitives.BitmapImage;
+import spark.primitives.Graphic;
 import spark.primitives.Path;
 
 public class MainPanelBase extends Group {
@@ -28,6 +29,9 @@ public class MainPanelBase extends Group {
     public function onCreate(e:Event):void {
         var background:BitmapImage = AssetsManager.getInstance().getBackground();
         this.addElementAt(background, 0);
+    }
+
+    public function drawHexGrid():void {
     }
 
     public function onMove(e:Event):void {

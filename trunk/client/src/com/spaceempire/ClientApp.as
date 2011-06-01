@@ -1,18 +1,16 @@
 package com.spaceempire {
-import com.spaceempire.view.main2.MainPanel;
+import com.spaceempire.view.main.MainPanelBase;
 
 import flash.events.Event;
 
-import mx.controls.Alert;
-import mx.core.IVisualElement;
 import mx.events.FlexEvent;
 
 import spark.components.Application;
 
 public class ClientApp extends Application {
 
-//    [Bindable]
-//    public var mainPanel:MainPanel;
+    [Bindable]
+    public var mainPanel:MainPanelBase;
 
     public function ClientApp() {
         super();

@@ -1,0 +1,24 @@
+@namespace s "library://ns.adobe.com/flex/spark";
+
+.navigationButtonUp {
+    backgroundImage: Embed("../icons/arrow_up.png");
+    width: "20";
+    color:red ;
+}
+
+.navigationButtonDown {
+    backgroundImage: Embed("../icons/arrow_down.png");
+    width: "20";
+    color:red ;
+}
+.navigationButtonRight {
+    backgroundImage: Embed("../icons/arrow_right.png");
+    width: "20";
+    color:red ;
+}
+
+.navigationButtonLeft {
+    backgroundImage: Embed("../icons/arrow_left.png");
+    width: "20";
+    color:red ;
+}

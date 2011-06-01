@@ -4,5 +4,6 @@
                        xmlns:main="com.spaceempire.view.main.*"
                        height="1025" width="769" xmlns:spaceempire="com.spaceempire.*">
     <main:MainPanel id="mainPanel" width="100%" height="100%"/>
+    <fx:Style source="./com/spaceempire/assets/css/style.css"/>
 </spaceempire:ClientApp>
 
