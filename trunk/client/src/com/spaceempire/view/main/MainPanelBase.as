@@ -5,21 +5,29 @@
  */
 package com.spaceempire.view.main {
 import com.spaceempire.assets.AssetsManager;
+import com.spaceempire.view.utils.HexGrid;
 
-import flash.display.Graphics;
 import flash.events.Event;
+import flash.geom.Point;
 
 import mx.events.FlexEvent;
 
 import spark.components.Group;
+import spark.effects.Scale;
 import spark.primitives.BitmapImage;
-import spark.primitives.Graphic;
-import spark.primitives.Path;
 
 public class MainPanelBase extends Group {
 
     [Bindable]
-    public var idPath:Path;
+    public var hexGrid:HexGrid;
+    [Bindable]
+    public var effectScale:Scale;
+    [Bindable]
+    public var scaleStep:Number = 0.1;
+
+    private var _scaleValue:Number = 1;
+
+    public var currentPosition:Point = new Point(-50, -50);
 
     public function MainPanelBase() {
         super();
@@ -31,18 +39,47 @@ public class MainPanelBase extends Group {
         this.addElementAt(background, 0);
     }
 
-    public function drawHexGrid():void {
+
+    public function onZoomIn(e:Event):void {
+        if (Math.abs(_scaleValue) < 1) {
+            scaleStep = (scaleStep < 0 ) ? scaleStep * -1 : scaleStep;
+            effectScale.end();
+            effectScale.play();
+            _scaleValue = _scaleValue + scaleStep;
+            hexGrid.x = ( 50 * 50 ) * _scaleValue / -2;
+            hexGrid.y = ( 50 * Math.sqrt(3) / 2.0 * 50 ) * _scaleValue / -2;
+        }
+
     }
 
-    public function onMove(e:Event):void {
-        idPath.x = idPath.x + 20;
-        idPath.y = idPath.y + 20;
+    public function onZoomOut(e:Event):void {
+        if (Math.abs(_scaleValue) > 0.5) {
+            scaleStep = (scaleStep > 0 ) ? scaleStep * -1 : scaleStep;
+            effectScale.end();
+            effectScale.play();
+            _scaleValue = _scaleValue + scaleStep;
+            hexGrid.x = ( 50 * 50 ) * _scaleValue / -2;
+            hexGrid.y = ( 50 * Math.sqrt(3) / 2.0 * 50 ) * _scaleValue / -2;
+        }
     }
 
-    public function onScale(e:Event):void {
-        idPath.scaleX = idPath.scaleX * 0.90;
-        idPath.scaleY = idPath.scaleY * 0.90;
+
+    public function onMoveUp(e:Event):void {
+        hexGrid.y = hexGrid.y + Math.abs(_scaleValue) * 150;
     }
+
+    public function onMoveDown(e:Event):void {
+        hexGrid.y = hexGrid.y - Math.abs(_scaleValue) * 150;
+    }
+
+    public function onMoveLeft(e:Event):void {
+        hexGrid.x = hexGrid.x + 200 * Math.abs(_scaleValue);
+    }
+
+    public function onMoveRight(e:Event):void {
+        hexGrid.x = hexGrid.x - 200 * Math.abs(_scaleValue);
+    }
+
 
 }
 }

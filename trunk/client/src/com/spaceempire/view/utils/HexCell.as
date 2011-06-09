@@ -1,10 +1,13 @@
 package com.spaceempire.view.utils {
+import flash.geom.Point;
+
 import spark.primitives.Path;
 
 public class HexCell extends Path {
     private var _column:int;
     private var _row:int;
     private var _linepath:String;
+    private var _position:Point;
 
     public function HexCell() {
         super();
@@ -26,13 +29,20 @@ public class HexCell extends Path {
         _row = value;
     }
 
-
     public function get linepath():String {
         return _linepath;
     }
 
     public function set linepath(value:String):void {
         _linepath = value;
+    }
+
+    public function get position():Point {
+        return _position;
+    }
+
+    public function set position(value:Point):void {
+        _position = value;
     }
 }
 }
