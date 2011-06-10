@@ -1,6 +1,7 @@
 package com.spaceempire.view.utils {
 import flash.geom.Point;
 
+import spark.primitives.Graphic;
 import spark.primitives.Path;
 
 public class HexCell extends Path {
@@ -8,6 +9,7 @@ public class HexCell extends Path {
     private var _row:int;
     private var _linepath:String;
     private var _position:Point;
+    private var _selection:Graphic;
 
     public function HexCell() {
         super();
@@ -43,6 +45,14 @@ public class HexCell extends Path {
 
     public function set position(value:Point):void {
         _position = value;
+    }
+
+    public function get selection():Graphic {
+        return _selection;
+    }
+
+    public function set selection(value:Graphic):void {
+        _selection = value;
     }
 }
 }

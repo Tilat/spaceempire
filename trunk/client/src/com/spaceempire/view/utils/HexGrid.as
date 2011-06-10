@@ -5,13 +5,11 @@ import flash.geom.Point;
 
 import mx.controls.Alert;
 import mx.events.FlexEvent;
-import mx.graphics.SolidColor;
 import mx.graphics.SolidColorStroke;
 import mx.utils.StringUtil;
 
 import spark.primitives.Ellipse;
 import spark.primitives.Graphic;
-import spark.primitives.Line;
 
 public class HexGrid extends Graphic {
     private var _rows:int = 5;
@@ -21,15 +19,19 @@ public class HexGrid extends Graphic {
     private var _lineColor:int = 0x4769C4;
     private var _lineWeight:int = 1;
     private var _lineTransparency:Number = 0.8;
-    private var _lineSize:Number = 50;
-    private var _bLineSize:Number = _lineSize * Math.sqrt(3.0) / 2.0;
-    private var _cLineSize:Number = _lineSize * 0.5;
+    private var _lineSize:int = 50;
+    //    _lineSize * (Math.sqrt(3.0) / 2.0); // 0.8660
+    private var _bLineSize:int = 43.0;
+    //    _lineSize *   _lineSize * 0.5 ; // 0.5000
+    private var _cLineSize:int = 25.0;
 
     public function HexGrid() {
         super();
         this.addEventListener(FlexEvent.ADD, onAdd);
-        this.addEventListener(MouseEvent.DOUBLE_CLICK, onDoubleClick);
+        //        this.addEventListener(MouseEvent.DOUBLE_CLICK, onDoubleClick);
         this.addEventListener(MouseEvent.CLICK, onCellClick);
+
+
     }
 
     public function onDoubleClick(e:Event):void {
@@ -83,48 +85,75 @@ public class HexGrid extends Graphic {
         return result;
     }
 
+    protected function getXbyColumn(column:int):int {
+        return column * (  _cLineSize + _lineSize) + _lineSize;
+    }
+
+    protected function getYbyRow(row:int, column:int):int {
+        return  row * 2 * _bLineSize + ( isEven(column) ? 0 : _bLineSize ) + _lineSize;
+    }
+
     public function onCellClick(e:Event):void {
         try {
             var event:MouseEvent = e as MouseEvent;
-            var column:Number = event.localX / ( _lineSize + _bLineSize );
-            var row:Number = ( event.localY ) / (2 * _bLineSize);
-            var x_center:int;
-            var y_center:int;
-            var max_column:int = Math.ceil(column);
-            var min_column:int = Math.floor(column);
-            var max_row:int = Math.ceil(row);
-            var min_row:int = Math.floor(row);
-            x_center = max_column * (_lineSize + _cLineSize);
-            if (isEven(column)) {
-                y_center = max_row * 2 * _bLineSize;
-            } else {
-                y_center = 2 * _bLineSize * max_row + _bLineSize;
+            var column:int = event.localX / ( _lineSize + _cLineSize );
+            var row:int = isEven(column) ? (event.localY ) / ( 2 * _bLineSize) : (event.localY - _bLineSize) / ( 2 * _bLineSize);
+
+            if (column < 0 || column > 50 || row < 0 || row > 50) {
+                return;
             }
-            var arc:Ellipse = new Ellipse();
-            arc.width = _lineSize * 2;
-            arc.height = _lineSize * 2;
-            arc.stroke = new SolidColorStroke(0x000000, 1, 1);
-            arc.fill = new SolidColor(0x000000, 1);
-            arc.x = event.localX - _lineSize;
-            arc.y = event.localY - _lineSize;
-            this.addElementAt(arc, 0);
 
-            //            var arc:Line = new Line();
-            //            arc.xFrom = event.localX ;
-            //            arc.yFrom = event.localY ;
-            //            arc.xTo = event.localX + 50 ;
-            //            arc.yTo = event.localX + 50 ;
-            //            arc.stroke = new SolidColorStroke(0x000000, 1, 1);
-            //            this.addElement(arc);
+            var possibleX:int = column * (  _cLineSize + _lineSize) + _lineSize;
+            var possibleY:int = row * 2 * _bLineSize + ( isEven(column) ? 0 : _bLineSize ) + _lineSize;
 
+
+            var distance:Number = Math.sqrt(Math.pow(possibleX - event.localX, 2) + Math.pow(possibleY - event.localY, 2));
+            if (distance > _lineSize) {
+
+                if (column != 0 && column != 50) {
+                    column = column - 1;
+                    possibleX = getXbyColumn(column);
+                    possibleY = getYbyRow(row, column);
+                    distance = Math.sqrt(Math.pow(possibleX - event.localX, 2) + Math.pow(possibleY - event.localY, 2));
+                    if (distance > _lineSize) {
+                        row = row - 1;
+                        possibleX = getXbyColumn(column);
+                        possibleY = getYbyRow(row, column);
+                        distance = Math.sqrt(Math.pow(possibleX - event.localX, 2) + Math.pow(possibleY - event.localY, 2));
+                        if (distance > _lineSize) {
+                            return;
+                        }
+                    }
+                }
+            }
+
+            var red:Ellipse = new Ellipse();
+            red.stroke = new SolidColorStroke(0xFF0000, 1, 1);
+            red.height = 2 * _bLineSize - 2;
+            red.width = 2 * _bLineSize - 2;
+            red.left = 0;
+            red.top = 0;
+            var hexCell:HexCell = _cells[column][row] as HexCell;
+            var selection:CellSelection = new CellSelection(hexCell);
+            selection.left = possibleX - _lineSize + (_lineSize - _bLineSize) + 1;
+            selection.top = possibleY - _lineSize + (_lineSize - _bLineSize) + 1;
+            selection.addElementAt(red, 0);
+            selection.addEventListener(MouseEvent.CLICK, onSelectedClick);
+            hexCell.selection = selection;
+            this.addElementAt(selection, 0);
         } catch(err:Error) {
-            Alert.show("msg" + err.message);
+            Alert.show(err.message);
         }
     }
 
 
+    public function onSelectedClick(e:Event):void {
+        var selection:CellSelection = e.target as CellSelection;
+        this.removeElement(selection);
+    }
+
     protected function isEven(value:Number):Boolean {
-        return (value % 2 > 0 && value % 2 < 1 );
+        return (value % 2 >= 0 && value % 2 < 1 );
     }
 
     public function get rows():int {
