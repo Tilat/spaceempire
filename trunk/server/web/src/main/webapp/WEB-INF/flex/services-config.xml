@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services-config>
+    <services>
+        <default-channels>
+            <channel ref="endpointChannel"/>
+        </default-channels>
+    </services>
+    <channels>
+        <channel-definition id="endpointChannel" class="mx.messaging.channels.AMFChannel">
+            <endpoint url="http://${profile.web.host}:${profile.web.port}/messagebroker"
+                      class="flex.messaging.endpoints.AMFEndpoint"/>
+        </channel-definition>
+    </channels>
+</services-config>

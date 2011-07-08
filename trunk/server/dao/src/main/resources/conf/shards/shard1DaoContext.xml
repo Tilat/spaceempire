@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <bean id="dataSource1" class="org.apache.commons.dbcp.BasicDataSource" p:driverClassName="${jdbc.driverClassName}"
+          p:url="${shard.1.jdbc.url}" p:username="${shard.1.jdbc.username}" p:password="${shard.1.jdbc.password}"
+          p:defaultAutoCommit="false" p:validationQuery="${jdbc.validation_query}"/>
+
+    <bean id="sessionFactory1" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+          p:packagesToScan="ru.spaceempire.server.model.**">
+        <property name="dataSource" ref="dataSource1"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl}</prop>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <!--DEBUG_SQL-->
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <prop key="hibernate.use_sql_comments">${hibernate.sql_comments}</prop>
+                <!--C3PO-->
+                <prop key="hibernate.c3p0.timeout">${jdbc.pool.timeout}</prop>
+                <prop key="hibernate.c3p0.max_size">${jdbc.pool.max_size}</prop>
+                <prop key="hibernate.c3p0.min_size">${jdbc.pool.init_size}</prop>
+                <prop key="hibernate.c3p0.idle_test_period">${jdbc.pool.idle_test_period}</prop>
+                <prop key="hibernate.c3p0.max_statements">${jdbc.pool.max_statements}</prop>
+                <prop key="hibernate.c3p0.acquire_increment">${jdbc.pool.acquire_increment}</prop>
+                <!--OPTIMIZATION-->
+                <prop key="hibernate.bytecode.provider">${hibernate.bytecode.provider}</prop>
+                <prop key="hibernate.order_updates">${hibernate.order_updates}</prop>
+                <prop key="hibernate.generate_statistics">${hibernate.statistics}</prop>
+                <prop key="transaction.auto_close_session">${hibernate.auto_close_session}</prop>
+                <prop key="hibernate.bytecode.use_reflection_optimizer">${hibernate.optimize_cglib}</prop>
+            </props>
+        </property>
+    </bean>
+</beans>
