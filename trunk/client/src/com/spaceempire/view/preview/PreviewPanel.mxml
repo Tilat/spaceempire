@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<preview:BasePreview xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:preview="com.spaceempire.view.preview.*"
+                     xmlns:components="spark.components.*">
+    <components:Label text="Hello"/>
+</preview:BasePreview>

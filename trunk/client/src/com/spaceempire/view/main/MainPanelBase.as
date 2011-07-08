@@ -35,6 +35,7 @@ public class MainPanelBase extends Group {
     }
 
     public function onCreate(e:Event):void {
+        this.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreate);
         var background:BitmapImage = AssetsManager.getInstance().getBackground();
         this.addElementAt(background, 0);
     }
@@ -49,7 +50,6 @@ public class MainPanelBase extends Group {
             hexGrid.x = ( 50 * 50 ) * _scaleValue / -2;
             hexGrid.y = ( 50 * Math.sqrt(3) / 2.0 * 50 ) * _scaleValue / -2;
         }
-
     }
 
     public function onZoomOut(e:Event):void {
@@ -79,7 +79,5 @@ public class MainPanelBase extends Group {
     public function onMoveRight(e:Event):void {
         hexGrid.x = hexGrid.x - 200 * Math.abs(_scaleValue);
     }
-
-
 }
 }

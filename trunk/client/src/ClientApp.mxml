@@ -1,9 +1,15 @@
 <?xml version="1.0"?>
 <spaceempire:ClientApp xmlns:fx="http://ns.adobe.com/mxml/2009"
                        xmlns:s="library://ns.adobe.com/flex/spark"
-                       xmlns:main="com.spaceempire.view.main.*"
+                       xmlns:main="com.spaceempire.view.main.*" xmlns:utils="com.spaceempire.view.utils.*"
+                       xmlns:preview="com.spaceempire.view.preview.*"
                        height="1025" width="769" xmlns:spaceempire="com.spaceempire.*">
-    <main:MainPanel id="mainPanel" width="100%" height="100%"/>
+
+    <utils:ViewStack id="viewStack">
+        <preview:PreviewPanel/>
+        <main:MainPanel id="mainPanel" width="100%" height="100%"/>
+    </utils:ViewStack>
+
     <fx:Style source="./com/spaceempire/assets/css/style.css"/>
 </spaceempire:ClientApp>
 

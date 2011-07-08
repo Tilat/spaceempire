@@ -11,6 +11,8 @@ import mx.utils.StringUtil;
 import spark.primitives.Ellipse;
 import spark.primitives.Graphic;
 
+[Event(name = "myTestEvent" , type = "flash.events.Event")]
+
 public class HexGrid extends Graphic {
     private var _rows:int = 5;
     private var _columns:int = 5;

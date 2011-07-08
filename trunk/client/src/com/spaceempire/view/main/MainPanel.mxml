@@ -24,6 +24,79 @@
                 <s:Button left="25" top="3" label="up" click="onMoveUp(event)"/>
                 <s:Button left="25" top="50" label="down" click="onMoveDown(event)"/>
             </s:Group>
+            <s:HGroup>
+                <s:Button label="testAMF" click="button1_clickHandler(event)"/>
+            </s:HGroup>
+
         </s:VGroup>
     </s:HGroup>
+    <fx:Script><![CDATA[
+        import com.spaceempire.remote.services.RemoteOperation;
+        import com.spaceempire.remote.services.delegates.auth.LoginOperation;
+
+        import mx.controls.Alert;
+        import mx.rpc.events.FaultEvent;
+        import mx.rpc.events.ResultEvent;
+
+        public function button1_clickHandler(event:MouseEvent):void {
+            try {
+
+                var operation:RemoteOperation = new LoginOperation();
+                operation.invoke("user", "password");
+                /*
+                 var channel:AMFChannel = new AMFChannel("endpointChannel", "http://localhost:8080/messagebroker");
+
+                 var channels:ChannelSet = new ChannelSet();
+                 channels.addChannel(channel);
+
+
+                 var remoteObject:RemoteObject = new RemoteObject("authEndpointImpl"); // this is the service id
+                 remoteObject.channelSet = channels;
+                 var operation:AbstractOperation = remoteObject.getOperation("login");
+                 operation.send("asdasd","asdasda");
+                 */
+                /*
+                 remoteObject.login.addEventListener(ResultEvent.RESULT, onResult);
+                 remoteObject.login.addEventListener(LoadEvent.LOAD, onResult);
+                 remoteObject.login.addEventListener(FaultEvent.FAULT, onResult);
+                 remoteObject.login("Hello World","Test");
+                 */
+
+
+                /*
+                 var remoteObject:RemoteObject = new RemoteObject();
+                 remoteObject.initialize();
+                 var channel:Channel = new AMFChannel("endpointChannel", "http://127.0.0.1:8080/messagebroker");
+                 var channelSet:ChannelSet = new ChannelSet();
+                 channelSet.addChannel(channel);
+                 remoteObject.channelSet = channelSet;
+                 channel.connect(channelSet);
+
+                 var operation:AbstractOperation = remoteObject.getOperation("login()");
+                 operation.addEventListener(ResultEvent.RESULT, onResult);
+                 operation.addEventListener(LoadEvent.LOAD, onResult);
+                 operation.addEventListener(FaultEvent.FAULT, onResult);
+                 operation.send("login", "password");
+                 */
+            } catch(err:Error) {
+                Alert.show(err.message);
+            }
+        }
+
+        public function onTest(e:Event):void {
+            Alert.show("onTest");
+        }
+
+        public function onResult(e:ResultEvent):void {
+            Alert.show("onResult" + e.result);
+        }
+
+        public function onFault(e:FaultEvent):void {
+            Alert.show("onFault" + e.toString());
+        }
+
+        public function onLoad(e:ResultEvent):void {
+            Alert.show("onLoad" + e.result);
+        }
+        ]]></fx:Script>
 </main:MainPanelBase>

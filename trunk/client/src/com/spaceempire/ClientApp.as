@@ -1,5 +1,7 @@
 package com.spaceempire {
+import com.spaceempire.context.AppContext;
 import com.spaceempire.view.main.MainPanelBase;
+import com.spaceempire.view.utils.ViewStack;
 
 import flash.events.Event;
 
@@ -11,6 +13,10 @@ public class ClientApp extends Application {
 
     [Bindable]
     public var mainPanel:MainPanelBase;
+    [Bindable]
+    public var viewStack:ViewStack;
+
+    private var _appContext:AppContext;
 
     public function ClientApp() {
         super();
@@ -29,6 +35,13 @@ public class ClientApp extends Application {
 
     public function onCreate(e:Event):void {
         this.removeEventListener(FlexEvent.CREATION_COMPLETE, onCreate);
+        createAppContext();
+    }
+
+    private function createAppContext():void {
+        _appContext = new AppContext();
+        _appContext.mainViewController = viewStack;
+        _appContext.loadConfig();
     }
 }
 }
