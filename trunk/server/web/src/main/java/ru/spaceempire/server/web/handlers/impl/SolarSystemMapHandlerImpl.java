@@ -14,6 +14,8 @@ public class SolarSystemMapHandlerImpl extends BaseHandler implements SolarSyste
 
     @Override
     public SolarSystemTO loadSolarSystemMap(Long solarSystemId) {
-        return new SolarSystemTO();
+        final SolarSystemTO solarSystemTO = new SolarSystemTO();
+        solarSystemTO.path = mapManager.getMapPathForSolarSystem(solarSystemId);
+        return solarSystemTO;
     }
 }

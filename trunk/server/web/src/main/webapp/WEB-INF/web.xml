@@ -12,6 +12,7 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
     <servlet>
         <servlet-name>amf</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -20,5 +21,16 @@
         <servlet-name>amf</servlet-name>
         <url-pattern>/messagebroker/*</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>pages</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>pages</servlet-name>
+        <url-pattern>/pages/*</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

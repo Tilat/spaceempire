@@ -2,6 +2,8 @@ package ru.spaceempire.server.web.handlers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import ru.spaceempire.server.game.managers.SolarSystemMapManager;
 
 /**
  * User: Sergey
@@ -9,4 +11,6 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class BaseHandler {
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Autowired
+    protected SolarSystemMapManager mapManager;
 }
