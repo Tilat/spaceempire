@@ -21,6 +21,7 @@
             </activation>
             <properties>
                 <deploy.profile>local</deploy.profile>
+                <skipTests>true</skipTests>
             </properties>
         </profile>
         <profile>
